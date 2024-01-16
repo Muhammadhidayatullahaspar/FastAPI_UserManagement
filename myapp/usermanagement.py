@@ -36,7 +36,7 @@ def create_user(user: UserCreate, db: Session = Depends(get_db), current_user: U
     db.add(db_user)
     db.commit()
     db.refresh(db_user)
-    return db_user
+    return UserCreate(username=db_user.username, password="*********")
 
 @router.put("/{user_id}", response_model=UserCreate)
 def update_user(user_id: int, user: UserCreate, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
@@ -47,7 +47,7 @@ def update_user(user_id: int, user: UserCreate, db: Session = Depends(get_db), c
     db_user.hashed_password = get_password_hash(user.password)
     db.commit()
     db.refresh(db_user)
-    return db_user
+    return UserCreate(username=db_user.username, password="*********")
 
 @router.delete("/{user_id}", status_code=status.HTTP_204_NO_CONTENT)
 def delete_user(user_id: int, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
