@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from models import User, SessionLocal
-from auth import get_password_hash
+from auth import get_password_hash, get_current_user
 from pydantic import BaseModel
 from typing import List
 
@@ -20,6 +20,10 @@ def get_db():
         yield db
     finally:
         db.close()
+
+@router.get("/users/me")
+def read_current_user(current_user: User = Depends(get_current_user)):
+    return current_user
 
 @router.get("/usernames/", response_model=List[UserList])
 def read_usernames(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):

@@ -5,16 +5,16 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 INSERT OR REPLACE INTO users (username, hashed_password) 
-VALUES ('Yayat', '$2b$12$fCepX8./PcXBctafXoig3Ol0tF4nvYe4MYdznH854dXtFWm09hWp2');
+VALUES ('Yayat', '$2b$12$guUx89waGiY22dLiKF2iZ.PyoDCNN9.8LHsAo0dQ/QUtEWVk1ua/C');
 
 INSERT OR REPLACE INTO users (username, hashed_password) 
-VALUES ('Putri', '$2b$12$C4XncUIiSmC8qf3eid466.WFrUtNnOycGF5YG/tPTXwJYlpUFYnra');
+VALUES ('Putri', '$2b$12$9yFgVA7thBMdCAIT4nWVEe7.BfxYIqFwo2SHQBS2OdzjnzEVVTH/K');
 
 INSERT OR REPLACE INTO users (username, hashed_password) 
-VALUES ('Windah', '$2b$12$dQpA9RxkHn3sXl4gbOk4VO7eKdSAyJs.50mlA6GQnJp7z7CL9IdGa');
+VALUES ('Windah', '$2b$12$LQgVdfLQ3usIlSXvV23n8OimXsFrXoYcRWKiHYULPR1L08fTNIJwq');
 
 INSERT OR REPLACE INTO users (username, hashed_password) 
-VALUES ('David', '$2b$12$ysL0PmLNyypt7G0wQsgsdOvOms1q49l5WHnBbxcqMugV1yhkcicbq');
+VALUES ('David', '$2b$12$yWK8ytSdv64M3Kum4jnNJOayxBjtWTIbTt39JWRjA7r8n3f1EGOj.');
 
 INSERT OR REPLACE INTO users (username, hashed_password) 
-VALUES ('Eka', '$2b$12$NwdkvWEdG1KD5qcxvi7zruzaamW8nreVCjy5MXKLULKCzrggdTaGW');
+VALUES ('Eka', '$2b$12$W1WE7eOUDDUxiprGXYm/mup5gHWoNGOBJtGq6SJJcTaBAeM6jz.eG');
