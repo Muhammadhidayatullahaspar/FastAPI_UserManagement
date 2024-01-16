@@ -7,6 +7,10 @@ from fastapi.security import OAuth2PasswordBearer
 
 router = APIRouter()
 
+class UserRegister(BaseModel):
+    username: str
+    password: str
+    
 class UserLogin(BaseModel):
     username: str
     password: str
@@ -41,3 +45,16 @@ def logout(db: Session = Depends(get_db), current_user: User = Depends(get_curre
         return {"message": "User logged out successfully."}
     else:
         raise HTTPException(status_code=404, detail="Token not found")
+
+@router.post("/register")
+def register_user(user_data: UserRegister, db: Session = Depends(get_db)):
+    existing_user = db.query(User).filter(User.username == user_data.username).first()
+    if existing_user:
+        raise HTTPException(status_code=400, detail="Username already registered")
+    hashed_password = get_password_hash(user_data.password)
+    new_user = User(username=user_data.username, hashed_password=hashed_password)
+    db.add(new_user)
+    db.commit()
+    db.refresh(new_user)
+
+    return {"message": "User successfully registered", "username": new_user.username}
