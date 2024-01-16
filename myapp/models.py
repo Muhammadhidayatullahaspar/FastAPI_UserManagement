@@ -18,7 +18,8 @@ class Token(Base):
     id = Column(Integer, primary_key=True, index=True)
     access_token = Column(String, index=True)
     user_id = Column(Integer, ForeignKey('users.id'))
-    expiration_date = Column(DateTime, default=datetime.utcnow)
+    expiration_date = Column(DateTime, default=lambda: datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES))
     user = relationship("User")
+
 
 Base.metadata.create_all(bind=engine)

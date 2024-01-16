@@ -26,8 +26,8 @@ def login(form_data: UserLogin, db: Session = Depends(get_db)):
     if not user or not verify_password(form_data.password, user.hashed_password):
         raise HTTPException(status_code=400, detail="Incorrect username or password")
     
-    access_token = create_access_token(data={"sub": user.username})
-    token_record = Token(access_token=access_token, user_id=user.id)
+    access_token, expiration = create_access_token(data={"sub": user.username})
+    token_record = Token(access_token=access_token, user_id=user.id, expiration_date=expiration)
     db.add(token_record)
     db.commit()
     return {"access_token": access_token, "token_type": "bearer"}
